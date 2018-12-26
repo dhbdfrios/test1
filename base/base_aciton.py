@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-import time
+import time,allure
 class BaseAciton:
     #当类初始化的时候这个方法就执行
     def __init__(self,driver):
@@ -27,24 +27,29 @@ class BaseAciton:
     def find_elements(self, loc):
         time.sleep(1)
         return self.driver.find_elements(loc[0], loc[1])
-
-    #滚动屏幕的方法
+    @allure.step(title="滑动操作")
     def swipe_screen(self,tag):
         time.sleep(1)
         screen_size = self.driver.get_window_size()
         width = screen_size.get("width")
         height = screen_size.get("height")
         if tag == 1: #向上滚动
+            allure.attach("滑动操作", "向上滑动屏幕")
             self.driver.swipe(width * 0.5, height * 0.8, width * 0.5, height * 0.3, 1000)
         if tag == 2: #向下滚动
+            allure.attach("滑动操作", "向下滑动屏幕")
             self.driver.swipe(width * 0.5, height * 0.3, width * 0.5, height * 0.8, 1000)
         if tag == 3: #向左滚动
+            allure.attach("滑动操作", "向左滑动屏幕")
             self.driver.swipe(width * 0.8, height * 0.5, width * 0.3, height * 0.5, 1000)
         if tag == 4: #向右滚动
+            allure.attach("滑动操作", "向右滑动屏幕")
             self.driver.swipe(width * 0.3, height * 0.5, width * 0.8, height * 0.5, 1000)
 
+    @allure.step(title="获取Toast消息")
     def get_toast_message(self, message):
         toast_xpath = "//*[contains(@text,'{}')]".format(message)
         toast_message = self.find_element((By.XPATH, toast_xpath)).text
+        allure.attach("toast消息内容", "{}".format(toast_message))
         return toast_message
 
