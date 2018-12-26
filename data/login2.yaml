@@ -1,0 +1,17 @@
+test_login_006:
+  name: "13488834010 "
+  passwd: "159357lilil"
+  get_toast_msg: "错误"
+  expect_msg: "登录密码错误"
+
+#test_login_008:
+#  name: " "
+#  passwd: "12345"
+#  get_toast_msg: "不能为空"
+#  expect_msg: "登录名不能为空"
+#
+test_login_009:
+  name: "110中国"
+  passwd: "12345"
+  get_toast_msg: "不存在"
+  expect_msg: "此用户不存在"
