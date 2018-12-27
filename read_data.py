@@ -6,7 +6,7 @@ def read_yaml_data(file_name):
 
 data_list = []
 data = read_yaml_data("login.yaml")
-# print(data)
+# print(data11111)
 for i in data.keys():
     # print(i)
     data2 = data.get(i)
